@@ -1,47 +1,56 @@
 # SupplierProof Web
 
-**Public customer-facing discovery prototype for SupplierProof.**
+**Public, customer-facing product prototype for SupplierProof.**
 
-Live target: `https://langzonedev.github.io/SupplierProof-Web/`
+**Live:** https://langzonedev.github.io/SupplierProof-Web/
 
-Deployment: GitHub Pages via GitHub Actions from `main`.
+SupplierProof gives Australian small suppliers and contractors one reusable workspace for the evidence buyers repeatedly request.
 
-## What this repository is
+> **Your evidence. Ready for every buyer.**
 
-This repository contains only the deliberately public SupplierProof demo/PWA surface. It is intended for rapid browser testing, portfolio demonstrations and early customer feedback.
+## Product experience
 
-The authoritative product repository is private. Protected product logic, internal research, security architecture, real customer data, credentials and commercially sensitive implementation details must never be copied here.
+The portfolio prototype demonstrates the full supplier-owned loop:
 
-## Prototype promise
+1. set up the supplier business;
+2. build a reusable evidence library;
+3. capture a buyer checklist;
+4. review Matched, Missing, Expired and Needs review outcomes;
+5. save a customer-specific response;
+6. reuse the same evidence for the next buyer.
 
-SupplierProof explores a simple outcome for Australian suppliers:
+Use **Run the guided demo** for the fastest end-to-end path.
 
-> **Keep your reusable business evidence in one place, then quickly understand what you already have for the next buyer request.**
+## Brand system
 
-The public prototype demonstrates:
+The interface uses a custom shield/check product mark and a professional supplier-friendly palette:
 
-- self-service supplier setup;
-- reusable synthetic evidence records;
-- buyer checklist entry;
-- Matched / Missing / Needs review / Expired presentation;
-- clear supporting-evidence references;
-- reusable evidence across multiple buyer requests;
-- copy/download response summary;
-- responsive installable PWA shell.
+- deep navy for trust and control;
+- teal for action and evidence readiness;
+- fresh lime for progress and positive outcomes;
+- warm sand for an approachable Australian SME feel.
 
-## Important boundary
+The product is part of the **Lang Systems** discovery portfolio.
 
-This demo uses a deliberately simple client-side matching heuristic only to demonstrate the interaction. It is **not** the production decision engine and must not evolve into protected commercial logic in this public repository.
+## Data and safety boundary
 
-SupplierProof organises evidence. It does not certify legal, contractual or procurement compliance.
+This public prototype:
 
-Use sample/synthetic information only.
+- stores sample workspace data in the browser with `localStorage`;
+- does not upload files or send customer data to a backend;
+- uses a deliberately simple, public matching heuristic;
+- is not a compliance certification or legal decision tool;
+- is suitable for synthetic/sample information only.
 
-## Repository pairing
+The private `langzonedev/SupplierProof` repository remains authoritative for protected product logic, research, security architecture and future backend design.
 
-- `langzonedev/SupplierProof` — private authoritative product/source repository.
-- `langzonedev/SupplierProof-Web` — public customer-facing prototype and Pages surface.
+## PWA and deployment
 
-## Status
+- Static HTML, CSS and JavaScript with no runtime dependencies.
+- Installable web manifest and offline asset cache.
+- Responsive, keyboard-friendly workflow.
+- GitHub Pages deployment from `main` via GitHub Actions.
 
-Discovery prototype. Not production software and not approved for real compliance documents.
+## Validation status
+
+Portfolio prototype targeting moderated user testing. Production use still requires authentication, encrypted document storage, tenant isolation, RBAC, audit history, retention controls, security review and commercial validation.
