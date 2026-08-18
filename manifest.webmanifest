@@ -1,9 +1,20 @@
 {
-  "name": "SupplierProof",
+  "name": "SupplierProof — Supplier Evidence Workspace",
   "short_name": "SupplierProof",
+  "id": "./",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f6f3f1",
-  "theme_color": "#251a38",
-  "description": "Public SupplierProof discovery prototype by Lang Systems."
+  "background_color": "#f5f7f3",
+  "theme_color": "#0b2e33",
+  "description": "Organise supplier evidence once and prepare for every customer request.",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
