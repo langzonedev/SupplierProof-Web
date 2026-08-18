@@ -38,9 +38,9 @@
     const businessName = $('businessName');
     if (!businessName.value.trim()) {
       event.stopImmediatePropagation();
-      focusError(businessName, 'Add a business name to save this supplier.');
+      focusError(businessName, 'Add a business name.');
     } else {
-      setTimeout(() => notify('Business profile saved in this browser.'), 0);
+      setTimeout(() => notify('Business saved.'), 0);
     }
   }, true);
 
@@ -49,17 +49,17 @@
     const requirements = $('requirements');
     if (!buyer.value.trim()) {
       event.stopImmediatePropagation();
-      focusError(buyer, 'Add the customer or buyer name first.');
+      focusError(buyer, 'Add a customer name.');
       return;
     }
     if (!requirements.value.trim()) {
       event.stopImmediatePropagation();
-      focusError(requirements, 'Add at least one customer requirement.');
+      focusError(requirements, 'Add at least one requirement.');
     }
   }, true);
 
   $('addEvidence')?.addEventListener('click', () => {
-    setTimeout(() => notify('Evidence item added to your reusable library.'), 0);
+    setTimeout(() => notify('Evidence added.'), 0);
   });
 
   $('loadSamples')?.addEventListener('click', event => {
@@ -68,22 +68,22 @@
       .some(el => el.textContent.includes('SAMPLE-'));
     if (count > 0 && existingSamples) {
       event.stopImmediatePropagation();
-      notify('The sample evidence pack is already loaded.');
+      notify('Sample pack already loaded.');
       return;
     }
-    setTimeout(() => notify('Synthetic evidence pack loaded.'), 0);
+    setTimeout(() => notify('Sample pack loaded.'), 0);
   }, true);
 
   $('loadBuyerSample')?.addEventListener('click', () => {
-    setTimeout(() => notify('Sample customer request loaded.'), 0);
+    setTimeout(() => notify('Sample request loaded.'), 0);
   });
 
   const quick = $('quickDemo');
   const status = $('quickDemoStatus');
   quick?.addEventListener('click', () => {
     quick.disabled = true;
-    quick.textContent = 'Preparing your workspace…';
-    if (status) status.textContent = 'Creating a realistic supplier workspace and customer request.';
+    quick.textContent = 'Loading sample…';
+    if (status) status.textContent = 'Loading supplier, evidence and request.';
 
     setValue('businessName', 'Example Electrical Services Pty Ltd');
     setValue('abn', '12 345 678 901');
@@ -102,8 +102,8 @@
       $('runMatch')?.click();
       quick.disabled = false;
       quick.textContent = 'Run demo again';
-      if (status) status.textContent = 'Demo ready: confirm what can be supplied now and what needs attention.';
-      notify('Readiness review created — you’re at step 4.');
+      if (status) status.textContent = 'Review what is ready and what needs work.';
+      notify('Readiness review ready.');
     }, 120);
   });
 
@@ -156,16 +156,16 @@
 
   $('saveResponse')?.addEventListener('click', () => {
     if ($('resultScore')?.textContent !== 'No request') {
-      setTimeout(() => notify('Reviewed response saved for reuse.'), 0);
+      setTimeout(() => notify('Response saved.'), 0);
     }
   });
 
   $('copySummary')?.addEventListener('click', () => {
-    if ($('resultScore')?.textContent !== 'No request') setTimeout(() => notify('Response summary copied.'), 50);
+    if ($('resultScore')?.textContent !== 'No request') setTimeout(() => notify('Summary copied.'), 50);
   });
 
   $('downloadSummary')?.addEventListener('click', () => {
-    if ($('resultScore')?.textContent !== 'No request') notify('Response summary downloaded.');
+    if ($('resultScore')?.textContent !== 'No request') notify('Summary downloaded.');
   });
 
   updateProgress();
