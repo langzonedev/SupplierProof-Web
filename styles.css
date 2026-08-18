@@ -182,3 +182,8 @@ footer{max-width:1180px;margin:auto;padding:1.5rem 1.2rem 2.5rem;display:flex;al
   .action-queue .mini{margin-left:0}
   .pack-summary{grid-template-columns:1fr}
 }
+
+.optional-fields{border-top:1px solid var(--line);padding-top:.8rem}
+.optional-fields summary{cursor:pointer;color:var(--teal-dark);font-size:.75rem;font-weight:850;list-style-position:outside}
+.optional-fields[open] summary{margin-bottom:.9rem}
+.optional-fields>.form-grid{margin-top:.2rem}
