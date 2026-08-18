@@ -1,0 +1,9 @@
+{
+  "name": "SupplierProof",
+  "short_name": "SupplierProof",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f3f1",
+  "theme_color": "#251a38",
+  "description": "Public SupplierProof discovery prototype by Lang Systems."
+}
