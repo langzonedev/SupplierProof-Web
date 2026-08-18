@@ -117,11 +117,16 @@
         <div class="card form-grid">
           <label>Business name <span class="required">Required</span><input id="businessName" autocomplete="organization" placeholder="Example Electrical Pty Ltd"></label>
           <label>ABN<input id="abn" inputmode="numeric" placeholder="12 345 678 901"></label>
-          <label>Primary contact<input id="contact" autocomplete="name" placeholder="Alex Morgan"></label>
-          <label>Email<input id="email" type="email" autocomplete="email" placeholder="alex@example.com"></label>
-          <label>Industry<select id="industry"><option value="">Select industry</option><option>Electrical / trade services</option><option>Facilities / maintenance</option><option>Construction subcontractor</option><option>Professional services</option><option>Technology supplier</option><option>Other</option></select></label>
-          <label>Operating region<input id="region" placeholder="South Australia"></label>
-          <label class="wide">What does your business supply?<textarea id="businessType" rows="3" placeholder="Electrical maintenance services for commercial and industrial customers"></textarea></label>
+          <details class="optional-fields wide">
+            <summary>Contact and business details</summary>
+            <div class="form-grid">
+              <label>Primary contact<input id="contact" autocomplete="name" placeholder="Alex Morgan"></label>
+              <label>Email<input id="email" type="email" autocomplete="email" placeholder="alex@example.com"></label>
+              <label>Industry<select id="industry"><option value="">Select industry</option><option>Electrical / trade services</option><option>Facilities / maintenance</option><option>Construction subcontractor</option><option>Professional services</option><option>Technology supplier</option><option>Other</option></select></label>
+              <label>Operating region<input id="region" placeholder="South Australia"></label>
+              <label class="wide">What do you supply?<textarea id="businessType" rows="3" placeholder="Electrical maintenance services"></textarea></label>
+            </div>
+          </details>
         </div>
         <div class="actions"><button id="saveProfile" class="primary">Save business</button><button class="secondary next" data-next="evidence">Next: evidence <span aria-hidden="true">→</span></button></div>
       </section>
@@ -136,13 +141,18 @@
         </div>
         <div class="card form-grid compact">
           <label>Evidence type<select id="evidenceType"><option>Public liability insurance</option><option>Professional indemnity insurance</option><option>Workers compensation insurance</option><option>WHS policy</option><option>Cyber security policy</option><option>Privacy policy</option><option>Trade licence</option><option>Environmental policy</option><option>Modern slavery statement</option><option>Business continuity plan</option><option>Other</option></select></label>
-          <label>Reference / issuer<input id="evidenceRef" placeholder="Policy SAMPLE-123 / Example Mutual"></label>
-          <label>Owner<input id="evidenceOwner" placeholder="Operations Manager"></label>
-          <label>Review status<select id="evidenceReview"><option>Current</option><option>Needs review</option></select></label>
-          <label>Issue date<input id="issueDate" type="date"></label>
           <label>Expiry / review date<input id="expiryDate" type="date"></label>
           <label class="wide attachment-field">Supporting file <span class="optional-label">PDF, DOC or DOCX · 10 MB max</span><input id="evidenceFile" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"><span id="fileSelection" class="file-selection">No file selected</span></label>
-          <label class="wide">Reusable note<input id="evidenceNotes" placeholder="Coverage, scope or standard answer"></label>
+          <details class="optional-fields wide">
+            <summary>Reference, owner and notes</summary>
+            <div class="form-grid compact">
+              <label>Reference / issuer<input id="evidenceRef" placeholder="Policy SAMPLE-123 / Example Mutual"></label>
+              <label>Owner<input id="evidenceOwner" placeholder="Operations Manager"></label>
+              <label>Review status<select id="evidenceReview"><option>Current</option><option>Needs review</option></select></label>
+              <label>Issue date<input id="issueDate" type="date"></label>
+              <label class="wide">Reusable note<input id="evidenceNotes" placeholder="Coverage, scope or standard answer"></label>
+            </div>
+          </details>
         </div>
         <p class="local-file-note">Files stay on this device.</p>
         <div class="actions"><button id="addEvidence" class="primary">Add evidence</button><button id="loadSamples" class="secondary">Load sample pack</button></div>
