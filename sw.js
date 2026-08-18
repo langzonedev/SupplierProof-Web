@@ -1,5 +1,5 @@
 const CACHE='supplierproof-web-v4';
-const ASSETS=['./','./index.html','./styles.css','./app.js','./attachments.js','./refinement.js','./manifest.webmanifest','./favicon.svg'];
+const ASSETS=['./','./index.html','./styles.css','./app.js','./attachments.js?v=1','./refinement.js','./manifest.webmanifest','./favicon.svg'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
