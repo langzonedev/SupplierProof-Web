@@ -111,7 +111,7 @@ function summary(){
 $('copySummary').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(summary());$('copySummary').textContent='Copied';setTimeout(()=>$('copySummary').textContent='Copy summary',1200);}catch{alert('Clipboard access is unavailable in this browser.');}});
 $('downloadSummary').addEventListener('click',()=>{const blob=new Blob([summary()],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`supplierproof-${(state.activeRequest?.buyer||'request').toLowerCase().replace(/[^a-z0-9]+/g,'-')}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);});
 $('newRequest').addEventListener('click',()=>{state.activeRequest=null;save();['buyerName','requestRef','dueDate','portal','requirements'].forEach(id=>$(id).value='');renderResults();showView('request');});
-$('resetDemo').addEventListener('click',()=>{if(confirm('Reset all SupplierProof sample data saved in this browser?')){window.SupplierProofAttachments?.clear();localStorage.removeItem(STORE_KEY);location.reload();}});
+$('resetDemo').addEventListener('click',async()=>{if(confirm('Reset all SupplierProof sample data saved in this browser?')){await window.SupplierProofAttachments?.clear();localStorage.removeItem(STORE_KEY);location.reload();}});
 
 hydrateProfile();renderEvidence();renderResults();renderHistory();renderDashboard();
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
