@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#251a38" />
-  <meta name="description" content="SupplierProof — reusable supplier evidence for the next buyer request." />
+  <meta name="description" content="SupplierProof helps small suppliers reuse compliance evidence across multiple customer requests." />
   <meta name="robots" content="index,follow" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="stylesheet" href="styles.css" />
-  <title>SupplierProof — Your evidence, ready for the next buyer request</title>
+  <title>SupplierProof — Stop rebuilding your compliance pack</title>
 </head>
 <body>
   <header class="hero">
@@ -16,13 +16,13 @@
       <div>
         <p class="eyebrow">A Lang Systems discovery prototype</p>
         <h1>SupplierProof</h1>
-        <p class="tagline">Your evidence, ready for the next buyer request.</p>
-        <p class="lede">Keep reusable supplier evidence organised, paste in a buyer checklist, and quickly see what you already have, what is missing, and what needs review.</p>
+        <p class="tagline">Stop rebuilding your compliance pack for every customer.</p>
+        <p class="lede">SupplierProof is for the supplier or contractor in the middle — the business repeatedly asked by different customers for the same licences, insurance, policies and standard answers.</p>
       </div>
       <div class="hero-card">
         <span class="prototype-badge">Interactive prototype</span>
-        <strong>Built to test one idea:</strong>
-        <p>Can small suppliers stop rebuilding the same compliance pack for every customer?</p>
+        <strong>Your business owns the evidence.</strong>
+        <p>Record it once, then reuse it when Customer A, Customer B and Customer C each send their own supplier checklist.</p>
       </div>
     </div>
   </header>
@@ -33,39 +33,70 @@
       <span>SupplierProof organises evidence. It does not certify legal, contractual or procurement compliance.</span>
     </section>
 
+    <section class="supply-story" aria-label="Where SupplierProof sits in the supply chain">
+      <div class="story-head">
+        <p class="eyebrow">Where you sit</p>
+        <h2>Your customers ask. Your business responds. SupplierProof helps you reuse what you already have.</h2>
+      </div>
+      <div class="chain">
+        <div class="chain-buyers">
+          <article><span>Customer A</span><strong>“Send your insurance and WHS documents.”</strong></article>
+          <article><span>Customer B</span><strong>“Complete our supplier questionnaire.”</strong></article>
+          <article><span>Customer C</span><strong>“Upload licences, policies and evidence.”</strong></article>
+        </div>
+        <div class="chain-arrow" aria-hidden="true">↓</div>
+        <article class="chain-you">
+          <span>Your business</span>
+          <h3>Supplier / contractor</h3>
+          <p>You are the company repeatedly proving the same things to different buyers.</p>
+        </article>
+        <div class="chain-arrow" aria-hidden="true">↓</div>
+        <article class="chain-proof">
+          <span>SupplierProof</span>
+          <h3>One reusable evidence library</h3>
+          <p>Keep your evidence once, map each new buyer request against it, then see what is ready, missing, expired or needs review.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="value-grid" aria-label="Product value">
-      <article><span>01</span><h2>Record once</h2><p>Build a reusable supplier evidence library instead of starting from scratch for every buyer.</p></article>
-      <article><span>02</span><h2>Map quickly</h2><p>Paste a buyer checklist and see likely matches, gaps, expired evidence and uncertain items.</p></article>
-      <article><span>03</span><h2>Respond clearly</h2><p>Create a buyer-specific response summary while keeping the underlying evidence reusable.</p></article>
+      <article><span>01</span><h2>Record once</h2><p>Store the documents and answers your customers keep asking for: insurance, licences, WHS, cyber, environmental and other supplier evidence.</p></article>
+      <article><span>02</span><h2>Reuse for each buyer</h2><p>When a customer sends another checklist, compare it against the evidence your business already holds instead of starting again.</p></article>
+      <article><span>03</span><h2>Know what needs attention</h2><p>Quickly identify likely matches, missing items, expired evidence and requirements that still need a human decision.</p></article>
+    </section>
+
+    <section class="example-strip">
+      <div><p class="eyebrow">Concrete example</p><h2>Imagine you run a small electrical contracting business.</h2></div>
+      <p>Three large customers all want public liability insurance, workers compensation, a WHS policy and your electrical contractor licence — but each asks in a different format. SupplierProof is intended to become <strong>your</strong> reusable compliance workspace, independent of whichever portal each customer happens to use.</p>
     </section>
 
     <section class="workspace">
       <div class="workspace-head">
-        <div><p class="eyebrow">Try the workflow</p><h2>Build a sample supplier response</h2></div>
+        <div><p class="eyebrow">Try it as the supplier</p><h2>Respond to a sample customer request</h2><p>Start by creating the small business that owns the evidence.</p></div>
         <button id="resetDemo" class="ghost">Reset demo</button>
       </div>
 
       <nav class="steps" aria-label="SupplierProof workflow">
-        <button class="step is-active" data-view="profile">1. Supplier</button>
-        <button class="step" data-view="evidence">2. Evidence</button>
-        <button class="step" data-view="request">3. Buyer request</button>
-        <button class="step" data-view="results">4. Results</button>
+        <button class="step is-active" data-view="profile">1. My business</button>
+        <button class="step" data-view="evidence">2. My evidence</button>
+        <button class="step" data-view="request">3. Customer asks</button>
+        <button class="step" data-view="results">4. What can I send?</button>
       </nav>
 
       <section id="profile" class="view is-active">
-        <div class="section-head"><div><p class="eyebrow">Step 1</p><h2>Create your sample supplier profile</h2><p>No account or setup assistance required.</p></div><span id="profile-status" class="status-pill">Not started</span></div>
+        <div class="section-head"><div><p class="eyebrow">Step 1 — you are the supplier</p><h2>Create your sample business</h2><p>This represents the contractor or small supplier being asked for compliance evidence by larger customers.</p></div><span id="profile-status" class="status-pill">Not started</span></div>
         <div class="card form-grid">
-          <label>Business name<input id="businessName" placeholder="Example Engineering Pty Ltd" /></label>
+          <label>Business name<input id="businessName" placeholder="Example Electrical Pty Ltd" /></label>
           <label>ABN<input id="abn" placeholder="12 345 678 901" /></label>
           <label>Primary contact<input id="contact" placeholder="Alex Morgan" /></label>
           <label>Email<input id="email" type="email" placeholder="alex@example.com" /></label>
-          <label class="wide">What does the business supply?<textarea id="businessType" rows="3" placeholder="Electrical maintenance services for commercial sites"></textarea></label>
+          <label class="wide">What does your business supply?<textarea id="businessType" rows="3" placeholder="Electrical maintenance services for commercial and industrial customers"></textarea></label>
         </div>
-        <div class="actions"><button id="saveProfile" class="primary">Save supplier profile</button><button class="secondary next" data-next="evidence">Continue</button></div>
+        <div class="actions"><button id="saveProfile" class="primary">Save my business</button><button class="secondary next" data-next="evidence">Add the evidence customers ask for</button></div>
       </section>
 
       <section id="evidence" class="view">
-        <div class="section-head"><div><p class="eyebrow">Step 2</p><h2>Build a reusable evidence library</h2><p>Add your own synthetic records or load five examples instantly.</p></div><span id="evidence-count" class="status-pill">0 items</span></div>
+        <div class="section-head"><div><p class="eyebrow">Step 2 — build your reusable pack</p><h2>Add evidence your customers commonly request</h2><p>This library belongs to your business and stays available for the next customer request.</p></div><span id="evidence-count" class="status-pill">0 items</span></div>
         <div class="card form-grid compact">
           <label>Evidence type<select id="evidenceType"><option>Public liability insurance</option><option>Workers compensation insurance</option><option>WHS policy</option><option>Cyber security policy</option><option>Trade licence</option><option>Environmental policy</option><option>Modern slavery statement</option><option>Other</option></select></label>
           <label>Reference / issuer<input id="evidenceRef" placeholder="Policy SAMPLE-123 / Example Mutual" /></label>
@@ -73,25 +104,25 @@
           <label>Expiry date<input id="expiryDate" type="date" /></label>
           <label class="wide">Notes<input id="evidenceNotes" placeholder="Optional scope or keywords" /></label>
         </div>
-        <div class="actions"><button id="addEvidence" class="primary">Add evidence</button><button id="loadSamples" class="secondary">Load 5 synthetic examples</button></div>
+        <div class="actions"><button id="addEvidence" class="primary">Add to my evidence library</button><button id="loadSamples" class="secondary">Load 5 sample supplier records</button></div>
         <div id="evidenceList" class="stack"></div>
-        <div class="actions"><button class="secondary next" data-next="request">Continue to buyer request</button></div>
+        <div class="actions"><button class="secondary next" data-next="request">A customer has sent me a checklist</button></div>
       </section>
 
       <section id="request" class="view">
-        <div class="section-head"><div><p class="eyebrow">Step 3</p><h2>Paste the buyer's checklist</h2><p>Enter one requirement per line. The public prototype uses a deliberately simple demo heuristic, not protected production logic.</p></div></div>
+        <div class="section-head"><div><p class="eyebrow">Step 3 — a customer asks</p><h2>Paste what the customer wants from you</h2><p>Enter one requirement per line. The public prototype uses a deliberately simple demo heuristic, not protected production logic.</p></div></div>
         <div class="card">
-          <label>Buyer / customer name<input id="buyerName" placeholder="Example Facilities Group" /></label>
-          <label>Requirements<textarea id="requirements" rows="10" placeholder="Current public liability insurance\nWorkers compensation insurance\nWHS policy\nCyber security policy\nElectrical contractor licence"></textarea></label>
+          <label>Customer / buyer name<input id="buyerName" placeholder="Example Facilities Group" /></label>
+          <label>What they asked your business to provide<textarea id="requirements" rows="10" placeholder="Current public liability insurance\nWorkers compensation insurance\nWHS policy\nCyber security policy\nElectrical contractor licence"></textarea></label>
         </div>
-        <div class="actions"><button id="loadBuyerSample" class="secondary">Load sample checklist</button><button id="runMatch" class="primary">Map requirements to evidence</button></div>
+        <div class="actions"><button id="loadBuyerSample" class="secondary">Load a realistic customer checklist</button><button id="runMatch" class="primary">Check what I already have</button></div>
       </section>
 
       <section id="results" class="view">
-        <div class="section-head"><div><p class="eyebrow">Step 4</p><h2>Buyer response map</h2><p id="resultIntro">Run a buyer request to see results.</p></div><span id="resultScore" class="status-pill">No request</span></div>
+        <div class="section-head"><div><p class="eyebrow">Step 4 — prepare your response</p><h2>What can I send this customer?</h2><p id="resultIntro">Run a customer request to see results.</p></div><span id="resultScore" class="status-pill">No request</span></div>
         <div id="resultsList" class="stack"></div>
-        <div class="actions"><button id="copySummary" class="secondary">Copy summary</button><button id="downloadSummary" class="secondary">Download summary</button><button id="newRequest" class="primary">Start another buyer request</button></div>
-        <div class="card reuse-card"><div><p class="eyebrow">The product hypothesis</p><h3>Your evidence stays useful for the next customer.</h3></div><p>Your sample supplier profile and evidence library stay in this browser when you start another buyer request. That reusable layer is the experience SupplierProof is designed to test.</p></div>
+        <div class="actions"><button id="copySummary" class="secondary">Copy customer response summary</button><button id="downloadSummary" class="secondary">Download summary</button><button id="newRequest" class="primary">Another customer has asked</button></div>
+        <div class="card reuse-card"><div><p class="eyebrow">The whole point</p><h3>The next customer starts with what you already know.</h3></div><p>Your sample business profile and evidence library stay in this browser. Start another request and reuse them again. SupplierProof is testing whether that simple ownership shift can save suppliers from repeatedly rebuilding the same compliance pack.</p></div>
       </section>
     </section>
 
