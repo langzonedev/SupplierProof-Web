@@ -210,7 +210,7 @@
     downloadFile(button.dataset.downloadFile);
   }, true);
 
-  window.SupplierProofAttachments = {
+  window.SupplyfolioAttachments = {
     remove: removeFile,
     clear: clearFiles,
     download: downloadFile
