@@ -135,8 +135,10 @@
           <label>Review status<select id="evidenceReview"><option>Current</option><option>Needs review</option></select></label>
           <label>Issue date<input id="issueDate" type="date"></label>
           <label>Expiry / review date<input id="expiryDate" type="date"></label>
+          <label class="wide attachment-field">Supporting file <span class="optional-label">PDF, DOC or DOCX · 10 MB max</span><input id="evidenceFile" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"><span id="fileSelection" class="file-selection">No file selected</span></label>
           <label class="wide">Notes / reusable answer<input id="evidenceNotes" placeholder="Scope, limits, standard answer or keywords"></label>
         </div>
+        <p class="local-file-note"><strong>Browser-local:</strong> selected files stay on this device.</p>
         <div class="actions"><button id="addEvidence" class="primary">Add evidence</button><button id="loadSamples" class="secondary">Load sample pack</button></div>
         <div id="evidenceList" class="stack" aria-live="polite"></div>
         <div class="actions"><button class="secondary next" data-next="request">Next: customer request <span aria-hidden="true">→</span></button></div>
@@ -195,6 +197,7 @@
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script src="app.js"></script>
+<script src="attachments.js"></script>
 <script src="refinement.js"></script>
 </body>
 </html>
