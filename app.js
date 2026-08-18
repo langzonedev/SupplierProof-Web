@@ -76,8 +76,8 @@ function autoMatch(text){
  const q=normal(text),candidates=[];
  state.evidence.forEach(e=>{const keys=keywords[e.type.toLowerCase()]||normal(e.type).split(' ');let score=0;keys.forEach(k=>{if(q.includes(k))score+=4;else normal(k).split(' ').forEach(w=>{if(w.length>4&&q.includes(w))score++;});});if(score)candidates.push({e,score});});
  candidates.sort((a,b)=>b.score-a.score);
- if(!candidates.length)return{status:'Missing',evidenceId:null,reason:'No supporting evidence found.'};
- const e=candidates[0].e;if(isExpired(e))return{status:'Expired',evidenceId:e.id,reason:'Evidence found, but its review date has passed.'};if(e.review==='Needs review'||candidates[0].score<4)return{status:'Needs review',evidenceId:e.id,reason:'Possible evidence found. Please review it.'};return{status:'Matched',evidenceId:e.id,reason:'Suggested match. Please confirm it.'};
+ if(!candidates.length||candidates[0].score<4)return{status:'Missing',evidenceId:null,reason:'No reliable evidence match found.'};
+ const e=candidates[0].e;if(isExpired(e))return{status:'Expired',evidenceId:e.id,reason:'Evidence found, but its review date has passed.'};if(e.review==='Needs review')return{status:'Needs review',evidenceId:e.id,reason:'Evidence found. Review it before sending.'};return{status:'Matched',evidenceId:e.id,reason:'Suggested match. Please confirm it.'};
 }
 $('runMatch').addEventListener('click',()=>{
  const reqs=$('requirements').value.split(/\n+/).map(x=>x.trim()).filter(Boolean);if(!reqs.length){alert('Add at least one customer requirement.');return;}
