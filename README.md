@@ -1,10 +1,10 @@
-# SupplierProof Web
+# Supplyfolio Web
 
-**Public, customer-facing product prototype for SupplierProof.**
+**Public, customer-facing product prototype for Supplyfolio by Lang Systems.**
 
 **Live:** https://langzonedev.github.io/SupplierProof-Web/
 
-SupplierProof gives Australian small suppliers and contractors one reusable workspace for the evidence buyers repeatedly request.
+Supplyfolio gives Australian small suppliers and contractors one reusable workspace for the evidence buyers repeatedly request.
 
 > **Your evidence. Ready for every buyer.**
 
@@ -54,3 +54,8 @@ The private `langzonedev/SupplierProof` repository remains authoritative for pro
 ## Validation status
 
 Portfolio prototype targeting moderated user testing. Production use still requires authentication, encrypted document storage, tenant isolation, RBAC, audit history, retention controls, security review and commercial validation.
+
+
+## Brand note
+
+Supplyfolio is the working replacement brand adopted in August 2026 after an exact-name and visual-identity collision was identified with an unrelated SupplierProof product. The repository path remains unchanged to preserve deployment history.
