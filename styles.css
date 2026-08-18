@@ -151,3 +151,14 @@ footer{max-width:1180px;margin:auto;padding:1.5rem 1.2rem 2.5rem;display:flex;al
   .trust-points article{grid-template-columns:1fr;gap:.3rem}footer{align-items:flex-start;flex-direction:column;gap:.35rem}.footer-meta{margin-left:0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.view{animation:none}button.primary,button.secondary,button.ghost,.toast{transition:none}}
+
+.optional-label{font-size:.64rem;font-weight:650;color:var(--muted)}
+.attachment-field input[type=file]{padding:.58rem;background:#f8faf9;cursor:pointer}
+.attachment-field input[type=file]::file-selector-button{border:1px solid #9cbdb7;background:#fff;color:var(--teal-dark);border-radius:8px;padding:.5rem .7rem;margin-right:.7rem;font:inherit;font-weight:800;cursor:pointer}
+.file-selection{font-size:.7rem;font-weight:600;color:var(--muted)}
+.file-selection.has-file{color:var(--teal-dark)}
+.local-file-note{margin:-.25rem 0 .25rem;font-size:.7rem;color:var(--muted)}
+.attachment-row{display:flex;align-items:center;gap:.55rem;background:#edf7f3;border:1px solid #c9e2d9;border-radius:9px;padding:.55rem .65rem;color:var(--teal-dark);font-size:.72rem}
+.attachment-row svg{flex:0 0 18px;width:18px;height:18px}
+.attachment-row span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.attachment-row small{margin-left:auto;white-space:nowrap;color:var(--muted)}
