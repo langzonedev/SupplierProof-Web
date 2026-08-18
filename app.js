@@ -30,10 +30,13 @@ document.querySelectorAll('.step').forEach(b=>b.addEventListener('click',()=>sho
 document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.next)));
 
 function isExpired(e){return !!(e.expiryDate&&e.expiryDate<today());}
+function isDueSoon(e){if(!e.expiryDate||isExpired(e))return false;const days=Math.ceil((new Date(`${e.expiryDate}T00:00:00`)-new Date())/86400000);return days<=60;}
 function renderDashboard(){
  const expired=state.evidence.filter(isExpired).length;
  const review=state.evidence.filter(e=>e.review==='Needs review').length;
- $('dashboard').innerHTML=`<article><span>Supplier</span><strong>${esc(state.profile.businessName||'Not set up')}</strong></article><article><span>Reusable evidence</span><strong>${state.evidence.length}</strong><small>${expired} expired · ${review} review</small></article><article><span>Customer responses</span><strong>${state.requests.length}</strong><small>saved in this browser</small></article>`;
+ const dueSoon=state.evidence.filter(isDueSoon).length;
+ const action=new Set([...state.evidence.filter(isExpired),...state.evidence.filter(isDueSoon),...state.evidence.filter(e=>e.review==='Needs review')]).size;
+ $('dashboard').innerHTML=`<article><span>Supplier</span><strong>${esc(state.profile.businessName||'Not set up')}</strong></article><article><span>Evidence pack</span><strong>${state.evidence.length}</strong><small>${state.evidence.filter(e=>e.fileKey).length} files attached</small></article><article><span>Needs action</span><strong>${action}</strong><small>${expired} expired · ${dueSoon} due soon · ${review} review</small></article><article><span>Customer packs</span><strong>${state.requests.length}</strong><small>saved on this device</small></article>`;
  $('workspaceSummary').textContent=state.profile.businessName?`${state.profile.businessName} · ${state.evidence.length} evidence item${state.evidence.length===1?'':'s'} · ${state.requests.length} saved request${state.requests.length===1?'':'s'}`:'Your workspace is saved in this browser.';
 }
 
@@ -73,8 +76,8 @@ function autoMatch(text){
  const q=normal(text),candidates=[];
  state.evidence.forEach(e=>{const keys=keywords[e.type.toLowerCase()]||normal(e.type).split(' ');let score=0;keys.forEach(k=>{if(q.includes(k))score+=4;else normal(k).split(' ').forEach(w=>{if(w.length>4&&q.includes(w))score++;});});if(score)candidates.push({e,score});});
  candidates.sort((a,b)=>b.score-a.score);
- if(!candidates.length)return{status:'Missing',evidenceId:null,reason:'No supporting evidence found.'};
- const e=candidates[0].e;if(isExpired(e))return{status:'Expired',evidenceId:e.id,reason:'Evidence found, but its review date has passed.'};if(e.review==='Needs review'||candidates[0].score<4)return{status:'Needs review',evidenceId:e.id,reason:'Possible evidence found. Please review it.'};return{status:'Matched',evidenceId:e.id,reason:'Suggested match. Please confirm it.'};
+ if(!candidates.length||candidates[0].score<4)return{status:'Missing',evidenceId:null,reason:'No reliable evidence match found.'};
+ const e=candidates[0].e;if(isExpired(e))return{status:'Expired',evidenceId:e.id,reason:'Evidence found, but its review date has passed.'};if(e.review==='Needs review')return{status:'Needs review',evidenceId:e.id,reason:'Evidence found. Review it before sending.'};return{status:'Matched',evidenceId:e.id,reason:'Suggested match. Please confirm it.'};
 }
 $('runMatch').addEventListener('click',()=>{
  const reqs=$('requirements').value.split(/\n+/).map(x=>x.trim()).filter(Boolean);if(!reqs.length){alert('Add at least one customer requirement.');return;}
@@ -94,7 +97,7 @@ $('responseNotes').addEventListener('input',()=>{if(state.activeRequest){state.a
 $('saveResponse').addEventListener('click',()=>{
  if(!state.activeRequest){alert('Create a customer request first.');return;}
  state.activeRequest.notes=$('responseNotes').value.trim();state.activeRequest.savedAt=new Date().toISOString();
- const copy=JSON.parse(JSON.stringify(state.activeRequest));const i=state.requests.findIndex(x=>x.id===copy.id);if(i>=0)state.requests[i]=copy;else state.requests.unshift(copy);save();renderHistory();$('saveResponse').textContent='Saved';setTimeout(()=>$('saveResponse').textContent='Save reviewed response',1200);
+ const copy=JSON.parse(JSON.stringify(state.activeRequest));const i=state.requests.findIndex(x=>x.id===copy.id);if(i>=0)state.requests[i]=copy;else state.requests.unshift(copy);save();renderHistory();$('saveResponse').textContent='Saved';setTimeout(()=>$('saveResponse').textContent='Save customer pack',1200);
 });
 
 function renderHistory(){
@@ -106,7 +109,7 @@ function renderHistory(){
 }
 function summary(){
  const r=state.activeRequest;if(!r)return'No SupplierProof customer request has been mapped yet.';
- return [`SupplierProof response summary`,`Supplier: ${state.profile.businessName||'Not supplied'}`,`Customer: ${r.buyer}`,`Reference: ${r.ref||'Not supplied'}`,`Due: ${r.dueDate||'Not supplied'}`,`Channel: ${r.portal||'Not supplied'}`,'','Important: this prototype organises sample evidence and does not certify compliance.','',...r.requirements.map((x,i)=>{const e=getEvidence(x.evidenceId);return `${i+1}. [${x.status}] ${x.text}${e?`\n   Evidence: ${e.type} — ${e.ref||'No reference'}${e.fileName?`\n   File: ${e.fileName}`:''}`:''}\n   ${x.reason}`;}),'',`Internal notes: ${r.notes||'None'}`].join('\n');
+ return [`SupplierProof customer checklist`,`Supplier: ${state.profile.businessName||'Not supplied'}`,`Customer: ${r.buyer}`,`Reference: ${r.ref||'Not supplied'}`,`Due: ${r.dueDate||'Not supplied'}`,`Channel: ${r.portal||'Not supplied'}`,'','Important: review every item before sending. SupplierProof does not certify compliance.','',...r.requirements.map((x,i)=>{const e=getEvidence(x.evidenceId);return `${i+1}. [${x.status}] ${x.text}${e?`\n   Evidence: ${e.type} — ${e.ref||'No reference'}${e.fileName?`\n   File: ${e.fileName}`:''}`:''}\n   ${x.reason}`;}),'',`Internal notes: ${r.notes||'None'}`].join('\n');
 }
 $('copySummary').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(summary());$('copySummary').textContent='Copied';setTimeout(()=>$('copySummary').textContent='Copy summary',1200);}catch{alert('Clipboard access is unavailable in this browser.');}});
 $('downloadSummary').addEventListener('click',()=>{const blob=new Blob([summary()],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`supplierproof-${(state.activeRequest?.buyer||'request').toLowerCase().replace(/[^a-z0-9]+/g,'-')}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);});

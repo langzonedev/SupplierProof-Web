@@ -101,7 +101,7 @@
     window.setTimeout(() => {
       $('runMatch')?.click();
       quick.disabled = false;
-      quick.textContent = 'Run demo again';
+      quick.textContent = 'Reload sample';
       if (status) status.textContent = 'Review what is ready and what needs work.';
       notify('Readiness review ready.');
     }, 120);
@@ -167,6 +167,94 @@
   $('downloadSummary')?.addEventListener('click', () => {
     if ($('resultScore')?.textContent !== 'No request') notify('Summary downloaded.');
   });
+
+  let evidenceFilter = 'all';
+
+  const daysUntil = date => {
+    if (!date) return null;
+    const target = new Date(date + 'T00:00:00');
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    return Math.ceil((target - now) / 86400000);
+  };
+
+  const needsAction = evidence => {
+    const days = daysUntil(evidence.expiryDate);
+    return evidence.review === 'Needs review' || (days !== null && days <= 60);
+  };
+
+  const updateEvidenceWorkspace = () => {
+    const queue = $('actionQueue');
+    const items = document.querySelectorAll('#evidenceList .evidence-item');
+    const actionCount = state.evidence.filter(needsAction).length;
+    const expiring = state.evidence.filter(item => {
+      const days = daysUntil(item.expiryDate);
+      return days !== null && days >= 0 && days <= 60;
+    }).length;
+    const missingFiles = state.evidence.filter(item => !item.fileKey).length;
+
+    if (queue) {
+      if (!state.evidence.length) {
+        queue.innerHTML = '<strong>Start with the documents customers ask for most.</strong><span>Insurance, licences and key policies.</span>';
+      } else if (!actionCount) {
+        queue.innerHTML = '<strong>Your evidence pack is current.</strong><span>No reviews or expiries due within 60 days.</span>';
+      } else {
+        queue.innerHTML = `<strong>${actionCount} item${actionCount === 1 ? '' : 's'} need attention.</strong><span>${expiring} expiring soon · ${missingFiles} without a file</span><button class="mini" data-show-actions>Show actions</button>`;
+        queue.querySelector('[data-show-actions]')?.addEventListener('click', () => setEvidenceFilter('action'));
+      }
+    }
+
+    items.forEach((item, index) => {
+      const evidence = state.evidence[index];
+      const show = evidenceFilter === 'all'
+        || (evidenceFilter === 'action' && evidence && needsAction(evidence))
+        || (evidenceFilter === 'files' && evidence?.fileKey);
+      item.hidden = !show;
+    });
+  };
+
+  const setEvidenceFilter = filter => {
+    evidenceFilter = filter;
+    document.querySelectorAll('[data-evidence-filter]').forEach(button => {
+      const active = button.dataset.evidenceFilter === filter;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    updateEvidenceWorkspace();
+  };
+
+  document.querySelectorAll('[data-evidence-filter]').forEach(button => {
+    button.addEventListener('click', () => setEvidenceFilter(button.dataset.evidenceFilter));
+  });
+
+  const updatePackSummary = () => {
+    const summary = $('packSummary');
+    if (!summary) return;
+    const request = state.activeRequest;
+    if (!request) {
+      summary.innerHTML = '';
+      summary.hidden = true;
+      return;
+    }
+    const counts = request.requirements.reduce((result, item) => {
+      result[item.status] = (result[item.status] || 0) + 1;
+      return result;
+    }, {});
+    const ready = counts.Matched || 0;
+    const action = request.requirements.length - ready;
+    summary.hidden = false;
+    summary.innerHTML = `<div><span>Ready to attach</span><strong>${ready}</strong></div><div><span>Needs action</span><strong>${action}</strong></div><div><span>Due</span><strong>${request.dueDate || 'Not set'}</strong></div>`;
+  };
+
+  const evidenceObserver = new MutationObserver(updateEvidenceWorkspace);
+  if ($('evidenceList')) evidenceObserver.observe($('evidenceList'), { childList: true });
+
+  const resultsObserver = new MutationObserver(updatePackSummary);
+  if ($('resultsList')) resultsObserver.observe($('resultsList'), { childList: true });
+
+  updateEvidenceWorkspace();
+  updatePackSummary();
+  setEvidenceFilter('all');
 
   updateProgress();
   updateViews();
