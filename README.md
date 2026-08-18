@@ -4,6 +4,8 @@
 
 Live target: `https://langzonedev.github.io/SupplierProof-Web/`
 
+Deployment: GitHub Pages via GitHub Actions from `main`.
+
 ## What this repository is
 
 This repository contains only the deliberately public SupplierProof demo/PWA surface. It is intended for rapid browser testing, portfolio demonstrations and early customer feedback.
