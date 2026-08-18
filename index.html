@@ -4,26 +4,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0b2e33">
-  <meta name="description" content="Keep supplier documents current and build every customer response faster with SupplierProof.">
+  <meta name="description" content="Keep supplier documents current and build every customer response faster with Supplyfolio.">
   <meta name="robots" content="index,follow">
-  <meta property="og:title" content="SupplierProof — One evidence pack. Every customer.">
+  <meta property="og:title" content="Supplyfolio — One evidence pack. Every customer.">
   <meta property="og:description" content="Store supplier documents once, track expiry dates and reuse them across customer requests.">
   <meta property="og:type" content="website">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=5">
-  <title>SupplierProof — One evidence pack. Every customer.</title>
+  <link rel="stylesheet" href="styles.css?v=6">
+  <title>Supplyfolio — One evidence pack. Every customer.</title>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to product</a>
 
 <header class="site-header">
-  <a class="brand" href="#" aria-label="SupplierProof home">
-    <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-label="SupplierProof shield and check mark">
-      <path d="M24 3 41 9v13c0 11-6.7 19.2-17 23C13.7 41.2 7 33 7 22V9l17-6Z" fill="currentColor"/>
-      <path d="m15.5 24.2 5.3 5.3 12-13" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <a class="brand" href="#" aria-label="Supplyfolio home">
+    <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-label="Supplyfolio document and handoff mark">
+      <path d="M9 6h20l10 10v26H9a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4Z" fill="currentColor"/>
+      <path d="M29 6v10h10M14 22h15M14 28h12M14 34h9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="37" cy="36" r="8" fill="#c9e99a"/>
+      <path d="M33.5 36h7M38 32.5l3.5 3.5-3.5 3.5" fill="none" stroke="#0b2e33" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <span>Supplier<span>Proof</span></span>
+    <span class="brand-name"><b>Supply<span>folio</span></b><small>by Lang Systems</small></span>
   </a>
   <nav aria-label="Primary">
     <a href="#workspace">Product</a>
@@ -48,7 +50,7 @@
         <li>Stored on this device</li>
       </ul>
     </div>
-    <div class="product-preview" aria-label="Example SupplierProof readiness summary">
+    <div class="product-preview" aria-label="Example Supplyfolio readiness summary">
       <div class="preview-top">
         <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
         <span>Customer response</span>
@@ -77,7 +79,7 @@
   <section class="shell">
     <section class="notice" role="note">
       <span class="notice-icon" aria-hidden="true">i</span>
-      <div><strong>Demo data stays in this browser.</strong><span>Use sample information only. SupplierProof does not certify compliance.</span></div>
+      <div><strong>Demo data stays in this browser.</strong><span>Use sample information only. Supplyfolio does not certify compliance.</span></div>
     </section>
 
     <section class="workspace" id="workspace">
@@ -104,7 +106,7 @@
 
       <div id="dashboard" class="dashboard" aria-live="polite"></div>
 
-      <nav class="steps" aria-label="SupplierProof workflow">
+      <nav class="steps" aria-label="Supplyfolio workflow">
         <button class="step is-active" data-view="profile"><span>1</span>Business</button>
         <button class="step" data-view="evidence"><span>2</span>Documents</button>
         <button class="step" data-view="request"><span>3</span>Request</button>
@@ -205,16 +207,16 @@
 
 <footer>
   <a class="brand footer-brand" href="#">
-    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 41 9v13c0 11-6.7 19.2-17 23C13.7 41.2 7 33 7 22V9l17-6Z" fill="currentColor"/><path d="m15.5 24.2 5.3 5.3 12-13" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span>Supplier<span>Proof</span></span>
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M9 6h20l10 10v26H9a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4Z" fill="currentColor"/><path d="M29 6v10h10M14 22h15M14 28h12M14 34h9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="37" cy="36" r="8" fill="#c9e99a"/><path d="M33.5 36h7M38 32.5l3.5 3.5-3.5 3.5" fill="none" stroke="#0b2e33" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="brand-name"><b>Supply<span>folio</span></b><small>by Lang Systems</small></span>
   </a>
   <p>One evidence pack. Every customer.</p>
-  <p class="footer-meta">A Lang Systems discovery product · Synthetic data only · 2026</p>
+  <p class="footer-meta">A Lang Systems product · Synthetic data only · 2026</p>
 </footer>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=5"></script>
-<script src="attachments.js?v=2"></script>
-<script src="refinement.js?v=5"></script>
+<script src="app.js?v=6"></script>
+<script src="attachments.js?v=3"></script>
+<script src="refinement.js?v=6"></script>
 </body>
 </html>

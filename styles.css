@@ -187,3 +187,9 @@ footer{max-width:1180px;margin:auto;padding:1.5rem 1.2rem 2.5rem;display:flex;al
 .optional-fields summary{cursor:pointer;color:var(--teal-dark);font-size:.75rem;font-weight:850;list-style-position:outside}
 .optional-fields[open] summary{margin-bottom:.9rem}
 .optional-fields>.form-grid{margin-top:.2rem}
+
+.brand-name{display:grid;gap:.12rem;line-height:.92}
+.brand-name small{font-size:.48rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.footer-brand .brand-name small{font-size:.44rem}
+.brand-name b{font:inherit;white-space:nowrap}
+.brand-name b span{color:var(--teal)}
