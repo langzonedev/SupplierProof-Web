@@ -2,7 +2,13 @@
   const fileInput = document.getElementById('evidenceFile');
   const fileLabel = document.getElementById('fileSelection');
   const addButton = document.getElementById('addEvidence');
-  if (!fileInput || !addButton || !('indexedDB' in window)) return;
+  if (!fileInput || !addButton) return;
+  if (!('indexedDB' in window)) {
+    fileInput.disabled = true;
+    fileLabel.textContent = 'Local file storage is unavailable in this browser.';
+    fileLabel.classList.remove('has-file');
+    return;
+  }
 
   const DB_NAME = 'supplierproof.attachments.v1';
   const STORE_NAME = 'files';
